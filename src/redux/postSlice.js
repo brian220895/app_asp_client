@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 import axios from "axios"
-
 const URL='https://brian-server.cyclic.app'
 export const createPost = createAsyncThunk(
     "createPost",
@@ -45,7 +44,9 @@ export const createPost = createAsyncThunk(
           // `http://localhost:5000/posts/delete/${object_id}`,
         );
         console.log('fc delete:', data)
-        return data;
+        if(data){
+          return data;
+        }
       } catch (error) {
         rejectWithValue(error);
       }
@@ -63,9 +64,14 @@ export const createPost = createAsyncThunk(
         );
 
         console.log('fc update:',data)
-        return data;
+        // return data;
+        if(data){
+          return data;
+        }
+        // return data;
       } catch (error) {
         rejectWithValue(error);
+       
       }
     }
   );
@@ -117,9 +123,11 @@ const postSlice = createSlice({
     }).addCase(deletePost.fulfilled, (state, action) => {
       state.isLoading=false
       state.isSuccess=false
-        state.posts = state.posts.filter((data2)=>{
-          return data2._id !==action.payload._id
-        })
+        if(action._id){
+          state.posts = state.posts.filter((data2)=>{
+            return data2._id !==action.payload._id
+          })
+        }
       
     }).addCase(deletePost.rejected, (state, action) => {
       state.isLoading=false
@@ -134,9 +142,12 @@ const postSlice = createSlice({
     .addCase(updatePost.fulfilled, (state, action) => {
       state.isLoading=false
       state.isSuccess=false
-        state.posts = state.posts.map((ele) =>
+      if(action._id){
+         state.posts = state.posts.map((ele) =>
           ele._id === action.payload._id ? action.payload : ele)
 
+      }
+       
         // console.log(action)
     }).addCase(updatePost.rejected, (state, action) => {
       state.isLoading=false

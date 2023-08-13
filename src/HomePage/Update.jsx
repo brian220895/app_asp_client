@@ -1,9 +1,12 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { updatePost } from '../redux/postSlice';
+import { getPost, updatePost } from '../redux/postSlice';
 
 function Update({post}) {
     const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getPost())
+    }, [ dispatch])
     const [updateTitle, setUpdateTitle] = useState(post.title)
     const [UpdateImage, setUpdateImage] = useState(post.attachment)
 
@@ -19,6 +22,7 @@ function Update({post}) {
             setUpdateImage(reader.result)
             // e.target.value = null;
         }
+
         // if(e.target.files[0].size===0){
         //     //    e.target.value = null;
         // }else{
@@ -34,14 +38,20 @@ function Update({post}) {
 
     const handleUpdate = (e) => {
         e.preventDefault()
-        console.log(updateTitle)
-        console.log(UpdateImage)
+        // console.log(updateTitle)
+        // console.log(UpdateImage)
         dispatch(updatePost({
             _id:post._id,
             title: updateTitle,
             attachment: UpdateImage
 
         }))
+
+        dispatch(getPost())
+        dispatch(getPost())
+        
+     
+
 
     }
     

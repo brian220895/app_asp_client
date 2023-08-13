@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { createPost, deletePost, getPost } from '../redux/postSlice';
 import { useRef } from 'react';
@@ -9,16 +9,24 @@ function HomePage() {
 
     const dispatch = useDispatch()
 
-    const { posts} = useSelector((state) => state.dataPost)
-    useEffect(() => {
-        dispatch(getPost())
-    }, [dispatch])
-
+ 
     const [title, setTitle] = useState()
     const [image, setImage] = useState()
 
     const titleRef = useRef(null);
     const fileReferences = useRef(null);
+
+    const { posts} = useSelector((state) => state.dataPost)
+
+
+
+
+    useEffect(() => {
+        dispatch(getPost())
+        
+    }, [ dispatch])
+
+ 
 
   
 
@@ -39,10 +47,36 @@ function HomePage() {
             attachment: image
 
         }))
+        
         titleRef.current.value = '';
         fileReferences.current.value = '';
 
     }
+
+    const handleDelete = useCallback((id)=>{
+       dispatch(deletePost(id))
+        
+       dispatch(getPost())
+       dispatch(getPost())
+    },[])
+
+
+    // const handleDelete = (id) => {
+    //    console.log('asdad',id)
+
+    //  dispatch(deletePost(id))
+     
+    //     dispatch(getPost())
+    //     dispatch(getPost())
+     
+    
+   
+        
+    // }
+
+    // useEffect(() => {
+    //     dispatch(getPost())
+    // }, [ dispatch])
     // if(isLoading){
     //     return (
     //         <>
@@ -74,7 +108,7 @@ function HomePage() {
                         <img src={post.attachment} width={100} alt='sas' />
 
                         {/* <button onClick={() => [setIdPost(post._id), setEditForm(!editForm)]}>Update</button> */}
-                        <button onClick={() => dispatch(deletePost(post._id))}>Delete</button>
+                        <button onClick={() =>handleDelete(post._id) }>Delete</button>
 
                         {/* <Link  to={`update/${post._id}`}>Update</Link> */}
 
