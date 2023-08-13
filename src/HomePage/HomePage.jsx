@@ -50,7 +50,8 @@ function HomePage() {
         
         titleRef.current.value = '';
         fileReferences.current.value = '';
-
+        dispatch(getPost())
+       dispatch(getPost())
     }
 
     const handleDelete = useCallback((id)=>{
