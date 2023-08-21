@@ -9,7 +9,7 @@ function HomePage() {
     
   const dispatch = useDispatch()
   const [form] = Form.useForm();
-  const { posts, isLoading } = useSelector((state) => state.dataPost)
+  const { posts} = useSelector((state) => state.dataPost)
   useEffect(() => {
       dispatch(getPost())
   }, [dispatch])
