@@ -1,6 +1,6 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import './App.css';
-import HomePage from './HomePage/HomePage';
+import HomePage from './HomePages/HomePage';
 // import Update from './HomePage/components/Update';
 
 function App() {
@@ -9,7 +9,8 @@ function App() {
     
     <Router>
     <Routes>
-      <Route path='/' element={<HomePage/>}/>
+     <Route path='/' element={<HomePage/>}/>
+      {/* <Route path='/home' element={<HomePage/>}/> */}
       {/* <Route path='/update/:id' element={<Update/>}/> */}
     </Routes>
     </Router>
@@ -20,4 +21,3 @@ function App() {
 }
 
 export default App;
-
