@@ -9,7 +9,7 @@ function HomePage() {
     
   const dispatch = useDispatch()
   const [form] = Form.useForm();
-  const { posts} = useSelector((state) => state.dataPost)
+  const { posts } = useSelector((state) => state.dataPost)
   useEffect(() => {
       dispatch(getPost())
   }, [dispatch])
@@ -74,10 +74,18 @@ function getFileBase64(file) {
 
     };
 
-    const onFinish = () => {
-        console.log(stateData);
-        dispatch(createPost(stateData))
-        message.success("Create successfully",[2], hideModal())
+    const onFinish = async() => {
+        // console.log(stateData);
+
+        // dispatch(createPost(stateData))
+
+        const completedCreatePost = await dispatch(createPost(stateData))
+        if(completedCreatePost){
+          
+          message.success('Created successfully', [4], hideModal())
+          
+        }
+
       };
     
    
@@ -89,13 +97,16 @@ function getFileBase64(file) {
     })
  }
  
-//  const getBase64=(file)=>
-//         new Promise((resolve,reject)=>{
-//             const reader = new FileReader();
-//             reader.readAsDataURL(file);
-//             reader.onload=()=>resolve(reader.result);
-//             reader.onerror=(error)=>reject(error);
-//         })
+ const handleDeletePost= async(idPost)=>{
+  // console.log(idPost)
+  const completedDeletePost = await dispatch(deletePost(idPost))
+  if(completedDeletePost){
+    
+    message.success('Deleted successfully', [4])
+    
+  }
+ }
+        
         
 
 
@@ -125,7 +136,7 @@ function getFileBase64(file) {
     >
 
       <Form.Item name="Title" label="Title" rules={[{ required: true, message:'Please type title' }]}>
-        <Input htmlType="text" name="title" value={stateData.title} onChange={handleOnChange}/>
+        <Input htmlType="text" name="title" value={stateData?.title} onChange={handleOnChange}/>
       </Form.Item>
       <Form.Item name="Image" label="Image">
         <FileBase64 type='file' multiple={true} onDone={(FileBase64)=>handleOnChangeAvatar(FileBase64)} />
@@ -160,7 +171,9 @@ function getFileBase64(file) {
                         <img src={post.attachment} width={100} alt='sas' />
 
                         {/* <button onClick={() => [setIdPost(post._id), setEditForm(!editForm)]}>Update</button> */}
-                        <button onClick={() => [dispatch(deletePost(post._id)),message.success("Deleted successfully",[2])]}>Delete</button><UpdatePost post={post}/>
+                        {/* <button onClick={() => dispatch(deletePost(post._id))}>Delete</button> */}
+                        <button onClick={() => handleDeletePost(post._id)}>Delete</button>
+                        <UpdatePost post={post}/>
 
           
 
