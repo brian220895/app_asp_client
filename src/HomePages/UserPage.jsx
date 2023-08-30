@@ -149,13 +149,13 @@ useEffect(() => {
   getUsers(dispatch,navigate)
   getDetailUser(dispatch,navigate)
   
-}, [])
+}, [dispatch,navigate])
 
 
 useEffect(() => {
   getDetailUser(dispatch,navigate)
   
-}, [])
+}, [dispatch,navigate])
 
  
   return (
