@@ -4,13 +4,8 @@ import FileBase64 from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
 import { deletePost, getPost,createPost } from '../redux/postSlice';
 import UpdatePost from './UpdatePost';
-
-import { getUser} from '../redux/userSlice';
-
 function HomePage() {
   
-  const [stateDN, setStateDN]=useState(null)
-
 
   const dispatch = useDispatch()
   const [form] = Form.useForm();
@@ -103,12 +98,7 @@ function getFileBase64(file) {
  
   return (
     <div>
-      {stateDN? (
-        <h1>Da dang nhap</h1>
-      ):(
-        <h1>Chua dang nhap</h1>
-      )}
-
+      
       <Button type="primary" onClick={showModal}>
         Create
       </Button>
