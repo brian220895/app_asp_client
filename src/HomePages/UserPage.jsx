@@ -90,7 +90,7 @@ function UserPage() {
 
 
   const onFinishLogin = async() => {
-      // console.log('stateUserLogin',stateUserLogin);
+      console.log('stateUserLogin',stateUserLogin);
 
       
 
