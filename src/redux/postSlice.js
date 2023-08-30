@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 import axios from "axios"
 
-const URL='https://brian-server.cyclic.app'
+const URL='https://thegioimauxanh.com'
 // const URL='http://localhost:3000'
 export const createPost = createAsyncThunk(
     "createPost",

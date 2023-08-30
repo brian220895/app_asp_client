@@ -12,7 +12,7 @@ import Cookies from 'universal-cookie';
 import jwt_decoded from 'jwt-decode';
 const cookies = new Cookies();
 let axiosJWT=axios.create()
-const URL='https://brian-server.cyclic.app'
+const URL='https://thegioimauxanh.com'
 
 const refreshToken = async()=>{
   try {
