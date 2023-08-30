@@ -13,7 +13,7 @@ function UpdatePost({post}) {
       attachment:post.attachment
   })
   
-  // console.log(stateDataUpdate)
+  console.log('xxx',stateDataUpdate)
   const handleOnChangeAvatarUpdate = async(FileBase64)=>{
       const file=FileBase64[0]
       const image_base64=await getFileBase64Update(file)

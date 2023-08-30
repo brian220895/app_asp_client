@@ -1,7 +1,7 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import './App.css';
 import HomePage from './HomePages/HomePage';
-// import Update from './HomePage/components/Update';
+import UserPage from './HomePages/UserPage';
 
 function App() {
   return (
@@ -9,9 +9,8 @@ function App() {
     
     <Router>
     <Routes>
-     <Route path='/' element={<HomePage/>}/>
-      {/* <Route path='/home' element={<HomePage/>}/> */}
-      {/* <Route path='/update/:id' element={<Update/>}/> */}
+     <Route path='/home' element={<HomePage/>}/>
+     <Route path='/' element={<UserPage/>}/>
     </Routes>
     </Router>
 

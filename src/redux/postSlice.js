@@ -2,18 +2,19 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 import axios from "axios"
 
-const URL='https://brian-server.cyclic.app'
-// const URL='http://localhost:5000'
+// const URL='https://brian-server.cyclic.app'
+// const URL='http://localhost:3000'
 export const createPost = createAsyncThunk(
     "createPost",
     async (object, {getState, rejectWithValue }) => {
       // console.log(getState());
       try {
         const { data } = await axios.post(
-          `${URL}/posts`,object
+          `/posts`,object
+          // `${URL}/posts`,object
         );
-        console.log('fc create:', data)
-        return data;
+        console.log('fc create:', data.data)
+        return data.data;
       } catch (error) {
         rejectWithValue(error);
       }
@@ -27,10 +28,11 @@ export const createPost = createAsyncThunk(
     async (object, {getState,rejectWithValue }) => {
       try {
         const { data } = await axios.get(
-          `${URL}/posts`
+          `/posts`
+          // `${URL}/posts`
         );
-        console.log('fc getposts:', data)
-        return data;
+        console.log('fc getposts:', data.data)
+        return data.data;
       } catch (error) {
         rejectWithValue(error);
       }
@@ -42,11 +44,13 @@ export const createPost = createAsyncThunk(
     async (object_id, {getState,rejectWithValue }) => {
       try {
         const { data } = await axios.delete(
-          `${URL}/posts/delete/${object_id}`
+          `/posts/delete/${object_id}`
+          // `${URL}/posts/delete/${object_id}`
           // `http://localhost:5000/posts/delete/${object_id}`,
         );
-        console.log('fc delete:', data)
-        return data;
+        console.log('fc delete:', data.data)
+        console.log('fc id delete:',object_id)
+        return data.data;
       } catch (error) {
         rejectWithValue(error);
       }
@@ -58,13 +62,14 @@ export const createPost = createAsyncThunk(
     "updatePost",
     async (object, {getState,rejectWithValue }) => {
       try {
-        const { data } = await axios.put(
-          `${URL}/posts/update/${object._id}`,object
+        const {data} = await axios.put(
+          `/posts/update/${object._id}`,object
+          // `${URL}/posts/update/${object._id}`,object
           // `http://localhost:5000/posts/update/${object._id}`,object
         );
-
-        console.log('fc update:',data)
-        return data;
+        console.log('fc object:',object)
+        console.log('fc update:',data.data)
+        return data.data;
       } catch (error) {
         rejectWithValue(error);
       }
@@ -73,16 +78,16 @@ export const createPost = createAsyncThunk(
 
 
 const postSlice = createSlice({
-  name: 'counter',
+  name: 'postReducer',
   initialState:{
     isLoading:false,
     isSuccess:false,
     posts:[]
   },
   reducers: {
-    increment: (state) => {
+    // increment: (state) => {
    
-    }
+    // }
   },
   extraReducers: (builder) => {
     builder
@@ -106,6 +111,7 @@ const postSlice = createSlice({
      state.posts=action.payload
      state.isLoading=false
     state.isSuccess=true
+    //  console.log('action',action)
    })
    .addCase(getPost.rejected, (state, action) => {
        state.isLoading=false
@@ -151,6 +157,6 @@ const postSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { increment} = postSlice.actions
+// export const { increment} = postSlice.actions
 
 export default postSlice.reducer
