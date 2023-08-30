@@ -5,10 +5,12 @@ import App from './App';
 import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
 import postSlice from './redux/postSlice';
+import userSlice from './redux/userSlice';
 
 const store = configureStore({
   reducer: {
-    listPost: postSlice
+    listPost: postSlice,
+    listUser: userSlice
   },
 })
 
