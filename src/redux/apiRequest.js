@@ -12,12 +12,12 @@ import Cookies from 'universal-cookie';
 import jwt_decoded from 'jwt-decode';
 const cookies = new Cookies();
 let axiosJWT=axios.create()
-const URL='https://thegioimauxanh.com'
+// const URL='https://thegioimauxanh.com'
 
 const refreshToken = async()=>{
   try {
     
-    const res=await axios.post(`${URL}/users/refresh`,{
+    const res=await axios.post(`/users/refresh`,{
       withCredentials: true
     })
     return res.data.accessToken
@@ -45,7 +45,7 @@ export const registerUser=async(user,dispatch,navigate)=>{
     try {
 
         // console.log('registerUser',user)
-      const res= await axios.post(`${URL}/users`,user)
+      const res= await axios.post(`/users`,user)
       // console.log('res',res.data.data)
       dispatch(registerUserSuccess(res.data.data))
       // navigate("/home")
@@ -61,7 +61,7 @@ export const registerUser=async(user,dispatch,navigate)=>{
   // console.log('accessToken22',accessToken)
   dispatch(getUsersStart())
   try {
-    const res= await axiosJWT.get(`${URL}/users`,{headers:{token:`${accessToken}`}}
+    const res= await axiosJWT.get(`/users`,{headers:{token:`${accessToken}`}}
     )
    
     dispatch(getUsersSuccess(res.data.data))
@@ -84,7 +84,7 @@ export const getDetailUser =async(dispatch,navigate)=>{
       const codedToken=jwt_decoded(accessToken)
       const userId=codedToken.id
   
-      const res = await axiosJWT.get(`${URL}/users/getdetail/${userId}`,{headers:{token:`${accessToken}`}})
+      const res = await axiosJWT.get(`/users/getdetail/${userId}`,{headers:{token:`${accessToken}`}})
     //  console.log('asdasdasdasdasdddasdas',res.data)
      dispatch(getDetailUserSuccess(res.data))
     }
@@ -99,7 +99,7 @@ export const loginUser =async(user,dispatch,navigate)=>{
   dispatch(loginUserStart())
   try {
 
-    const res= await axios.post(`${URL}/users/login`,user)
+    const res= await axios.post(`/users/login`,user)
     // console.log('res',res.data.data)
     
     dispatch(loginUserSuccess(res.data))
