@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 import axios from "axios"
 
-// const URL='https://brian-server.cyclic.app'
+const URL='https://brian-server.cyclic.app'
 // const URL='http://localhost:3001'
 export const createPost = createAsyncThunk(
     "createPost",
@@ -10,7 +10,7 @@ export const createPost = createAsyncThunk(
       // console.log(getState());
       try {
         const { data } = await axios.post(
-          `/posts`,object,{
+          `${URL}/posts`,object,{
             withCredentials: true
           }
           // `${URL}/posts`,object
@@ -30,7 +30,7 @@ export const createPost = createAsyncThunk(
     async (object, {getState,rejectWithValue }) => {
       try {
         const { data } = await axios.get(
-          `/posts`,{
+          `${URL}/posts`,{
             withCredentials: true
           }
           // `${URL}/posts`
@@ -48,7 +48,7 @@ export const createPost = createAsyncThunk(
     async (object_id, {getState,rejectWithValue }) => {
       try {
         const { data } = await axios.delete(
-          `/posts/delete/${object_id}`,{
+          `${URL}/posts/delete/${object_id}`,{
             withCredentials: true
           }
           // `${URL}/posts/delete/${object_id}`
@@ -69,7 +69,7 @@ export const createPost = createAsyncThunk(
     async (object, {getState,rejectWithValue }) => {
       try {
         const {data} = await axios.put(
-          `/posts/update/${object._id}`,object,{
+          `${URL}/posts/update/${object._id}`,object,{
             withCredentials: true
           }
           // `${URL}/posts/update/${object._id}`,object

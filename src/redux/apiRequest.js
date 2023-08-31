@@ -17,7 +17,7 @@ let axiosJWT=axios.create()
 const refreshToken = async()=>{
   try {
     
-    const res=await axios.post(`/users/refresh`,{
+    const res=await axios.post(`${URL}/users/refresh`,{
       withCredentials: true
     })
     return res.data.accessToken
@@ -45,7 +45,7 @@ export const registerUser=async(user,dispatch,navigate)=>{
     try {
 
         // console.log('registerUser',user)
-      const res= await axios.post(`/users`,user,{
+      const res= await axios.post(`${URL}/users`,user,{
         withCredentials: true
       })
       // console.log('res',res.data.data)
@@ -63,7 +63,7 @@ export const registerUser=async(user,dispatch,navigate)=>{
   // console.log('accessToken22',accessToken)
   dispatch(getUsersStart())
   try {
-    const res= await axiosJWT.get(`/users`,{headers:{token:`${accessToken}`}},{
+    const res= await axiosJWT.get(`${URL}/users`,{headers:{token:`${accessToken}`}},{
       withCredentials: true
     }
     )
@@ -88,7 +88,7 @@ export const getDetailUser =async(dispatch,navigate)=>{
       const codedToken=jwt_decoded(accessToken)
       const userId=codedToken.id
   
-      const res = await axiosJWT.get(`/users/getdetail/${userId}`,{headers:{token:`${accessToken}`}},{
+      const res = await axiosJWT.get(`${URL}/users/getdetail/${userId}`,{headers:{token:`${accessToken}`}},{
         withCredentials: true
       })
     //  console.log('asdasdasdasdasdddasdas',res.data)
@@ -105,7 +105,7 @@ export const loginUser =async(user,dispatch,navigate)=>{
   dispatch(loginUserStart())
   try {
 
-    const res= await axios.post(`/users/login`,user,{
+    const res= await axios.post(`${URL}/users/login`,user,{
       withCredentials: true
     })
     // console.log('res',res.data.data)
@@ -124,7 +124,7 @@ export const logoutUser =async(dispatch,navigate)=>{
   dispatch(logoutUserStart())
   try {
 
-    await axios.post(`/users/logout`,{
+    await axios.post(`${URL}/users/logout`,{
       withCredentials: true
     })
     // console.log('res',res.data.data)
