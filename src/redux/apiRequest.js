@@ -106,9 +106,7 @@ export const loginUser =async(user,dispatch,navigate)=>{
   dispatch(loginUserStart())
   try {
 
-    const res= await axios.post(`${URL}/users/login`,user,{
-      withCredentials: true
-    })
+    const res= await axios.post(`${URL}/users/login`,user)
     // console.log('res',res.data.data)
     
     dispatch(loginUserSuccess(res.data))
