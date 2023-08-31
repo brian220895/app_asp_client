@@ -45,7 +45,9 @@ export const registerUser=async(user,dispatch,navigate)=>{
     try {
 
         // console.log('registerUser',user)
-      const res= await axios.post(`/users`,user)
+      const res= await axios.post(`/users`,user,{
+        withCredentials: true
+      })
       // console.log('res',res.data.data)
       dispatch(registerUserSuccess(res.data.data))
       // navigate("/home")
@@ -61,7 +63,9 @@ export const registerUser=async(user,dispatch,navigate)=>{
   // console.log('accessToken22',accessToken)
   dispatch(getUsersStart())
   try {
-    const res= await axiosJWT.get(`/users`,{headers:{token:`${accessToken}`}}
+    const res= await axiosJWT.get(`/users`,{headers:{token:`${accessToken}`}},{
+      withCredentials: true
+    }
     )
    
     dispatch(getUsersSuccess(res.data.data))
@@ -84,7 +88,9 @@ export const getDetailUser =async(dispatch,navigate)=>{
       const codedToken=jwt_decoded(accessToken)
       const userId=codedToken.id
   
-      const res = await axiosJWT.get(`/users/getdetail/${userId}`,{headers:{token:`${accessToken}`}})
+      const res = await axiosJWT.get(`/users/getdetail/${userId}`,{headers:{token:`${accessToken}`}},{
+        withCredentials: true
+      })
     //  console.log('asdasdasdasdasdddasdas',res.data)
      dispatch(getDetailUserSuccess(res.data))
     }
@@ -99,7 +105,9 @@ export const loginUser =async(user,dispatch,navigate)=>{
   dispatch(loginUserStart())
   try {
 
-    const res= await axios.post(`/users/login`,user)
+    const res= await axios.post(`/users/login`,user,{
+      withCredentials: true
+    })
     // console.log('res',res.data.data)
     
     dispatch(loginUserSuccess(res.data))
@@ -116,7 +124,9 @@ export const logoutUser =async(dispatch,navigate)=>{
   dispatch(logoutUserStart())
   try {
 
-    await axios.post(`/users/logout`)
+    await axios.post(`/users/logout`,{
+      withCredentials: true
+    })
     // console.log('res',res.data.data)
     
     dispatch(logoutUserSuccess())
