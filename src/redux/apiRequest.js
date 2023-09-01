@@ -115,6 +115,7 @@ export const loginUser =async(user,dispatch,navigate)=>{
     getUsers(dispatch,navigate)
     getDetailUser(dispatch,navigate)
     // navigate("/home")
+    console.log('login API', res)
   } catch (error) {
     dispatch(loginUserFailed())
   }
