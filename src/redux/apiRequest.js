@@ -122,19 +122,21 @@ export const loginUser =async(user,dispatch,navigate)=>{
 
 
 export const loginUsertest =async(dispatch,navigate)=>{
-  dispatch(loginUserStart())
+  dispatch(getDetailUserStart())
   try {
 
-    const res= await axios.get(`${URL}/setCookie`,{
-      withCredentials: true
-    })
-    // console.log('res',res.data.data)
+
     
-    dispatch(loginUserSuccess(res.data))
+      const res = await axios.get(`https://brian-server.cyclic.app/setcookie`,{
+        withCredentials: true
+      })
   
+    //  dispatch(getDetailUserSuccess(res.data))
+
+      
     // navigate("/home")
   } catch (error) {
-    dispatch(loginUserFailed())
+    dispatch(getDetailUserFailed())
   }
 }
 
