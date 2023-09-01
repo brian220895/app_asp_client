@@ -10,7 +10,9 @@ export const createPost = createAsyncThunk(
       // console.log(getState());
       try {
         const { data } = await axios.post(
-          `${URL}/posts`,object
+          `${URL}/posts`,object,{
+            withCredentials: true
+          }
           // `${URL}/posts`,object
         );
         console.log('fc create:', data.data)
@@ -46,7 +48,9 @@ export const createPost = createAsyncThunk(
     async (object_id, {getState,rejectWithValue }) => {
       try {
         const { data } = await axios.delete(
-          `${URL}/posts/delete/${object_id}`
+          `${URL}/posts/delete/${object_id}`,{
+            withCredentials: true
+          }
           // `${URL}/posts/delete/${object_id}`
           // `http://localhost:5000/posts/delete/${object_id}`,
         );
@@ -65,7 +69,9 @@ export const createPost = createAsyncThunk(
     async (object, {getState,rejectWithValue }) => {
       try {
         const {data} = await axios.put(
-          `${URL}/posts/update/${object._id}`,object
+          `${URL}/posts/update/${object._id}`,object,{
+            withCredentials: true
+          }
           // `${URL}/posts/update/${object._id}`,object
           // `http://localhost:5000/posts/update/${object._id}`,object
         );
