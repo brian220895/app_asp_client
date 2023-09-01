@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 const userSlice = createSlice({
   name: 'userReducer',
   initialState:{
@@ -55,7 +57,8 @@ loginUserSuccess:(state,action)=>{
   state.isFetching=false
   state.success=true
   state.error=false
-
+  cookies.set('myCat', 'Pacman', { path: '/' });
+  console.log(cookies.get('myCat')); // Pacman
   // console.log(action)
 },
 loginUserFailed:(state)=>{
