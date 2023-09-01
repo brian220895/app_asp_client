@@ -159,6 +159,13 @@ useEffect(() => {
   
 }, [dispatch,navigate])
 
+useEffect(() => {
+  axios.get(`https://brian-server.cyclic.app/setCookie`,{
+    withCredentials: true
+  })
+  
+}, [])
+
  
   return (
     <div>
