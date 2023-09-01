@@ -121,6 +121,26 @@ export const loginUser =async(user,dispatch,navigate)=>{
 }
 
 
+export const loginUsertest =async(dispatch,navigate)=>{
+  dispatch(loginUserStart())
+  try {
+
+    const res= await axios.post(`${URL}/setCookie`,{
+      withCredentials: true
+    })
+    // console.log('res',res.data.data)
+    
+    dispatch(loginUserSuccess(res.data))
+  
+    // navigate("/home")
+  } catch (error) {
+    dispatch(loginUserFailed())
+  }
+}
+
+
+
+
 export const logoutUser =async(dispatch,navigate)=>{
   dispatch(logoutUserStart())
   try {
