@@ -3,7 +3,6 @@ import { Button, Form, Input, Modal, message } from 'antd';
 // import FileBase64 from 'react-file-base64';
 import {useNavigate} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import axios from "axios"
 // import {registerUser,getUsers,loginUser,logoutUser,getDetailUser} from '../redux/apiRequest'
 import {registerUser,getUsers,logoutUser,getDetailUser, loginUsertest} from '../redux/apiRequest'
 
@@ -160,12 +159,6 @@ useEffect(() => {
   
 }, [dispatch,navigate])
 
-useEffect(() => {
-  axios.get(`https://brian-server.cyclic.app/setCookie`,{
-    withCredentials: true
-  })
-  
-}, [])
 
  
   return (

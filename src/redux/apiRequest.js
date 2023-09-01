@@ -125,7 +125,7 @@ export const loginUsertest =async(dispatch,navigate)=>{
   dispatch(loginUserStart())
   try {
 
-    const res= await axios.post(`${URL}/setCookie`,{
+    const res= await axios.get(`${URL}/setCookie`,{
       withCredentials: true
     })
     // console.log('res',res.data.data)
