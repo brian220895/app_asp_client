@@ -121,24 +121,24 @@ export const loginUser =async(user,dispatch,navigate)=>{
 }
 
 
-export const loginUsertest =async(dispatch,navigate)=>{
-  dispatch(getDetailUserStart())
-  try {
+// export const loginUsertest =async(dispatch,navigate)=>{
+//   dispatch(getDetailUserStart())
+//   try {
 
 
     
-     await axios.post(`https://brian-server.cyclic.app/setcookie`,{
-        withCredentials: true
-      })
+//      await axios.post(`https://brian-server.cyclic.app/setcookie`,{
+//         withCredentials: true
+//       })
   
-    //  dispatch(getDetailUserSuccess(res.data))
+//     //  dispatch(getDetailUserSuccess(res.data))
 
       
-    // navigate("/home")
-  } catch (error) {
-    dispatch(getDetailUserFailed())
-  }
-}
+//     // navigate("/home")
+//   } catch (error) {
+//     dispatch(getDetailUserFailed())
+//   }
+// }
 
 
 
