@@ -89,7 +89,7 @@ export const getDetailUser =async(dispatch,navigate)=>{
       const codedToken=jwt_decoded(accessToken)
       const userId=codedToken.id
   
-      const res = await axiosJWT.get(`${URL}/users/getdetail/${userId}`,{headers:{token:`${accessToken}`}},{
+      const res = await axios.get(`${URL}/users/getdetail/${userId}`,{headers:{token:`${accessToken}`}},{
         withCredentials: true
       })
     //  console.log('asdasdasdasdasdddasdas',res.data)
