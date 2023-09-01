@@ -28,7 +28,9 @@ export const createPost = createAsyncThunk(
     async (object, {getState,rejectWithValue }) => {
       try {
         const { data } = await axios.get(
-          `${URL}/posts`
+          `${URL}/posts`,{
+            withCredentials: true
+          }
           // `${URL}/posts`
         );
         console.log('fc getposts:', data.data)
