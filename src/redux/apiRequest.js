@@ -11,32 +11,32 @@ import {
 import Cookies from 'universal-cookie';
 import jwt_decoded from 'jwt-decode';
 const cookies = new Cookies();
-let axiosJWT=axios.create()
+// let axiosJWT=axios.create()
 // const URL='http://localhost:3001'
 
 const URL='https://brian-server.cyclic.app'
-const refreshToken = async()=>{
-  try {
+// const refreshToken = async()=>{
+//   try {
     
-    const res=await axios.post(`${URL}/users/refresh`,{
-      withCredentials: true
-    })
-    return res.data.accessToken
+//     const res=await axios.post(`${URL}/users/refresh`,{
+//       withCredentials: true
+//     })
+//     return res.data.accessToken
 
-  } catch (error) {
-     console.log(error)
-  }
+//   } catch (error) {
+//      console.log(error)
+//   }
   
-}
+// }
 
-axiosJWT.interceptors.request.use(async(config)=>{
-   let newToken = await refreshToken()
-   config.headers['token']=newToken
+// axiosJWT.interceptors.request.use(async(config)=>{
+//    let newToken = await refreshToken()
+//    config.headers['token']=newToken
    
-   return config
-  }, 
-  (err)=>Promise.reject(err)
-  )
+//    return config
+//   }, 
+//   (err)=>Promise.reject(err)
+//   )
 
 
 
@@ -64,7 +64,7 @@ export const registerUser=async(user,dispatch,navigate)=>{
   // console.log('accessToken22',accessToken)
   dispatch(getUsersStart())
   try {
-    const res= await axiosJWT.get(`${URL}/users`,{headers:{token:`${accessToken}`}},{
+    const res= await axios.get(`${URL}/users`,{headers:{token:`${accessToken}`}},{
       withCredentials: true
     }
     )
