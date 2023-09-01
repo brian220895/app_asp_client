@@ -59,15 +59,18 @@ export const registerUser=async(user,dispatch,navigate)=>{
 
 
  export const getUsers =async(dispatch,navigate)=>{
-  const accessToken = cookies.get('token')
+  // const accessToken = cookies.get('token')
   
   // console.log('accessToken22',accessToken)
   dispatch(getUsersStart())
   try {
-    const res= await axios.get(`${URL}/users`,{headers:{token:`${accessToken}`}},{
+
+    const res= await axios.get(`${URL}/users`,{
       withCredentials: true
-    }
-    )
+    })
+    // const res= await axios.get(`${URL}/users`,{headers:{token:`${accessToken}`}},{
+    //   withCredentials: true
+    // })
    
     dispatch(getUsersSuccess(res.data.data))
   } catch (error) {
