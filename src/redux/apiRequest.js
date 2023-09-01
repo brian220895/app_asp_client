@@ -127,7 +127,7 @@ export const loginUsertest =async(dispatch,navigate)=>{
 
 
     
-      const res = await axios.get(`https://brian-server.cyclic.app/setcookie`,{
+     await axios.get(`https://brian-server.cyclic.app/setcookie`,{
         withCredentials: true
       })
   
