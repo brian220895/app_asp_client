@@ -57,7 +57,7 @@ loginUserSuccess:(state,action)=>{
   state.isFetching=false
   state.success=true
   console.log('gggggg',action.payload)
-  // cookies.set('accessToken', action.accessToken, { path: '/' });
+  cookies.set('accessToken', action.accessToken, { path: '/' });
   // console.log('gggggg',cookies.get('accessToken')); // Pacman
 },
 loginUserFailed:(state)=>{
