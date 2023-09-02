@@ -22,51 +22,38 @@ const URL='https://brian-server.cyclic.app'
 
 
 
-const refreshToken = async()=>{
-  try {
+// const refreshToken = async()=>{
+//   try {
 
-      const refreshToken = cookies.get('refreshToken')
+//     if(cookies.get('token')){
+//       const refreshToken = cookies.get('refreshToken')
 
-      const res = await axios.post(`${URL}/users/refresh`,{headers:{refreshToken:`${refreshToken}`}},{
-        withCredentials: true
-      })
-      console.log('LOL',res)
-      // var newAccessToken = res.data.accessToken
-      // var newRefreshToken = res.data.refreshToken
-
-      // console.log('retgggggg',newAccessToken)
- 
-      // cookies.set('token', newAccessToken, {  
-      //     // httpOnly: true,
-      //      sameSite: 'strict'});
+//       const res = await axios.post(`${URL}/users/refresh`,{headers:{refreshToken:`${refreshToken}`}},{
+//         withCredentials: true
+//       })
       
-      // console.log('retggggggsdasd',newRefreshToken)
-      // cookies.set('refreshToken', newRefreshToken, {  
-      // // httpOnly: true,
-      //   sameSite: 'strict'});
-
-      // return res.data.accessToken
- 
+//       return res.data.accessToken
+//     }
     
-    // const res=await axios.post(`${URL}/users/refresh`,{
-    //   withCredentials: true
-    // })
+//     // const res=await axios.post(`${URL}/users/refresh`,{
+//     //   withCredentials: true
+//     // })
    
 
-  } catch (error) {
-     console.log(error)
-  }
+//   } catch (error) {
+//      console.log(error)
+//   }
   
-}
+// }
 
-axiosJWT.interceptors.request.use(async(config)=>{
-   let newToken = await refreshToken()
-   config.headers['token']=newToken
+// axiosJWT.interceptors.request.use(async(config)=>{
+//    let newToken = await refreshToken()
+//    config.headers['token']=newToken
    
-   return config
-  }, 
-  (err)=>Promise.reject(err)
-  )
+//    return config
+//   }, 
+//   (err)=>Promise.reject(err)
+//   )
 
 
 
@@ -98,7 +85,7 @@ export const registerUser=async(user,dispatch,navigate)=>{
     // const res= await axios.get(`${URL}/users`,{
     //   withCredentials: true
     // })
-    const res= await axiosJWT.get(`${URL}/users`,{headers:{token:`${accessToken}`}},{
+    const res= await axios.get(`${URL}/users`,{headers:{token:`${accessToken}`}},{
       withCredentials: true
     })
    
