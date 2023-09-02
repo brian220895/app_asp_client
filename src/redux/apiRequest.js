@@ -109,7 +109,7 @@ export const loginUser =async(user,dispatch,navigate)=>{
   dispatch(loginUserStart())
   try {
 
-    const res= await axios.get(`${URL}/setcookie`,user,{
+    const res= await axios.post(`${URL}/users/login`,user,{
       withCredentials: true
     })
     // console.log('res',res.data.data)
