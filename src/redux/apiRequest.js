@@ -110,7 +110,8 @@ export const loginUser =async(user,dispatch,navigate)=>{
   try {
 
     const res= await axios.get(`${URL}/setcookie`,user,{
-      withCredentials: true
+      withCredentials: true,httpOnly: true, sameSite: 'none', secure: true,
+      domain: 'thegioimauxanh.com'
     })
     // console.log('res',res.data.data)
     
