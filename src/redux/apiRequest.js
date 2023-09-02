@@ -11,7 +11,7 @@ import {
 import Cookies from 'universal-cookie';
 import jwt_decoded from 'jwt-decode';
 const cookies = new Cookies();
-let axiosJWT=axios.create()
+// let axiosJWT=axios.create()
 // const URL='http://localhost:3001'
 
 const URL='https://brian-server.cyclic.app'
