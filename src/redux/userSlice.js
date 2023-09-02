@@ -59,7 +59,7 @@ loginUserSuccess:(state,action)=>{
   // console.log('gggggg',action.payload.refreshToken)
   console.log('ggggggsdasd',action.payload.accessToken)
   cookies.set('token', action.payload.accessToken, {  
-      httpOnly: true,
+      // httpOnly: true,
        sameSite: 'strict'});
   // console.log('gggggg',cookies.get('accessToken')); // Pacman
 },
