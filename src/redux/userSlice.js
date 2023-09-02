@@ -56,10 +56,9 @@ loginUserStart:(state)=>{
 loginUserSuccess:(state,action)=>{
   state.isFetching=false
   state.success=true
-  state.error=false
-  cookies.set('myCat', 'Pacman', { path: '/' });
-  console.log(cookies.get('myCat')); // Pacman
-  // console.log(action)
+  
+  // cookies.set('myCat', 'Pacman', { path: '/' });
+  // console.log(cookies.get('myCat')); // Pacman
 },
 loginUserFailed:(state)=>{
 state.isFetching=false
