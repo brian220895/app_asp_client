@@ -55,7 +55,7 @@ loginUserStart:(state)=>{
 },
 loginUserSuccess:(state,action)=>{
   state.isFetching=false
-  state.success=true,
+  state.success=true
   console.log('gggggg',action.payload.refreshToken)
   console.log('gggggg',action.payload.accessToken)
   cookies.set('token', action.payload.accessToken, {  
