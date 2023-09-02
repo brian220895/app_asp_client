@@ -31,15 +31,17 @@ const refreshToken = async()=>{
       const res = await axios.post(`${URL}/users/refresh`,{headers:{refreshToken:`${refreshToken}`}},{
         withCredentials: true
       })
+      var newAccessToken = res.data.accessToken
+      var newRefreshToken = res.data.refreshToken
 
-      console.log('retgggggg',res.data.accessToken)
+      console.log('retgggggg',newAccessToken)
  
-      cookies.set('token', res.data.accessToken, {  
+      cookies.set('token', newAccessToken, {  
           // httpOnly: true,
            sameSite: 'strict'});
       
-      console.log('retggggggsdasd',res.data.refreshToken)
-      cookies.set('refreshToken', res.data.refreshToken, {  
+      console.log('retggggggsdasd',newRefreshToken)
+      cookies.set('refreshToken', newRefreshToken, {  
       // httpOnly: true,
         sameSite: 'strict'});
 
