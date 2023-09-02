@@ -97,7 +97,7 @@ export const registerUser=async(user,dispatch,navigate)=>{
     // const res= await axios.get(`${URL}/users`,{
     //   withCredentials: true
     // })
-    const res= await axios.get(`${URL}/users`,{headers:{token:`${accessToken}`}},{
+    const res= await axiosJWT.get(`${URL}/users`,{headers:{token:`${accessToken}`}},{
       withCredentials: true
     })
    
@@ -138,7 +138,7 @@ export const loginUser =async(user,dispatch,navigate)=>{
   dispatch(loginUserStart())
   try {
 
-    const res= await axiosJWT.post(`${URL}/users/login`,user,{
+    const res= await axios.post(`${URL}/users/login`,user,{
       withCredentials: true
     })
     // console.log('res',res.data.data)
