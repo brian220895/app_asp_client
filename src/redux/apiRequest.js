@@ -11,32 +11,60 @@ import {
 import Cookies from 'universal-cookie';
 import jwt_decoded from 'jwt-decode';
 const cookies = new Cookies();
-// let axiosJWT=axios.create()
+let axiosJWT=axios.create()
 // const URL='http://localhost:3001'
 
 const URL='https://brian-server.cyclic.app'
-// const refreshToken = async()=>{
-//   try {
+
+
+
+
+
+
+
+const refreshToken = async()=>{
+  try {
+
+    if(cookies.get('token')){
+      const refreshToken = cookies.get('refreshToken')
+
+      const res = await axios.post(`${URL}/users/refresh`,{headers:{refreshToken:`${refreshToken}`}},{
+        withCredentials: true
+      })
+
+      console.log('retgggggg',res.data.accessToken)
+ 
+      cookies.set('token', res.data.accessToken, {  
+          // httpOnly: true,
+           sameSite: 'strict'});
+      
+      console.log('retggggggsdasd',res.data.refreshToken)
+      cookies.set('refreshToken', res.data.refreshToken, {  
+      // httpOnly: true,
+        sameSite: 'strict'});
+
+      return res.data.accessToken
+    }
     
-//     const res=await axios.post(`${URL}/users/refresh`,{
-//       withCredentials: true
-//     })
-//     return res.data.accessToken
-
-//   } catch (error) {
-//      console.log(error)
-//   }
-  
-// }
-
-// axiosJWT.interceptors.request.use(async(config)=>{
-//    let newToken = await refreshToken()
-//    config.headers['token']=newToken
+    // const res=await axios.post(`${URL}/users/refresh`,{
+    //   withCredentials: true
+    // })
    
-//    return config
-//   }, 
-//   (err)=>Promise.reject(err)
-//   )
+
+  } catch (error) {
+     console.log(error)
+  }
+  
+}
+
+axiosJWT.interceptors.request.use(async(config)=>{
+   let newToken = await refreshToken()
+   config.headers['token']=newToken
+   
+   return config
+  }, 
+  (err)=>Promise.reject(err)
+  )
 
 
 
@@ -109,7 +137,7 @@ export const loginUser =async(user,dispatch,navigate)=>{
   dispatch(loginUserStart())
   try {
 
-    const res= await axios.post(`${URL}/users/login`,user,{
+    const res= await axiosJWT.post(`${URL}/users/login`,user,{
       withCredentials: true
     })
     // console.log('res',res.data.data)
