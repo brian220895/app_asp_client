@@ -61,7 +61,7 @@ loginUserSuccess:(state,action)=>{
     // httpOnly: true,
         // sameSite: 'strict',
         // path: '/',
-       sameSite: false});
+       sameSite: 'strict'});
   // console.log('gggggg',cookies.get('accessToken')); // Pacman
 },
 loginUserFailed:(state)=>{
