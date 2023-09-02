@@ -25,7 +25,6 @@ const URL='https://brian-server.cyclic.app'
 const refreshToken = async()=>{
   try {
 
-    if(cookies.get('token')){
       const refreshToken = cookies.get('refreshToken')
 
       const res = await axios.post(`${URL}/users/refresh`,{headers:{refreshToken:`${refreshToken}`}},{
@@ -46,7 +45,7 @@ const refreshToken = async()=>{
         sameSite: 'strict'});
 
       return res.data.accessToken
-    }
+ 
     
     // const res=await axios.post(`${URL}/users/refresh`,{
     //   withCredentials: true
