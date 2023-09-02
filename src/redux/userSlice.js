@@ -84,7 +84,7 @@ logoutUserSuccess:(state)=>{
   state.isFetching=false
   state.success=false
   state.error=false
-
+  cookies.remove('token');
   // console.log(action)
 },
 logoutUserFailed:(state)=>{
