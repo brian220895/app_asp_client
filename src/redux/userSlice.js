@@ -56,9 +56,9 @@ loginUserStart:(state)=>{
 loginUserSuccess:(state,action)=>{
   state.isFetching=false
   state.success=true
-  
-  cookies.set('accessToken', action.accessToken, { path: '/' });
-  console.log('gggggg',cookies.get('accessToken')); // Pacman
+  console.log('gggggg',action)
+  // cookies.set('accessToken', action.accessToken, { path: '/' });
+  // console.log('gggggg',cookies.get('accessToken')); // Pacman
 },
 loginUserFailed:(state)=>{
 state.isFetching=false
