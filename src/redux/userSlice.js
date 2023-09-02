@@ -57,7 +57,7 @@ loginUserSuccess:(state,action)=>{
   state.isFetching=false
   state.success=true
   console.log('gggggg',action.payload.refreshToken)
-  console.log('gggggg',action.payload.accessToken)
+  console.log('ggggggsdasd',action.payload.accessToken)
   cookies.set('token', action.payload.accessToken, {  
       httpOnly: true,
        sameSite: 'strict'});
