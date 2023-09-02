@@ -56,11 +56,16 @@ loginUserStart:(state)=>{
 loginUserSuccess:(state,action)=>{
   state.isFetching=false
   state.success=true
-  // console.log('gggggg',action.payload.refreshToken)
-  console.log('ggggggsdasd',action.payload.accessToken)
+  console.log('gggggg',action.payload.refreshToken)
+ 
   cookies.set('token', action.payload.accessToken, {  
       // httpOnly: true,
        sameSite: 'strict'});
+  
+  console.log('ggggggsdasd',action.payload.accessToken)
+  cookies.set('refreshToken', action.payload.refreshToken, {  
+  // httpOnly: true,
+    sameSite: 'strict'});
   // console.log('gggggg',cookies.get('accessToken')); // Pacman
 },
 loginUserFailed:(state)=>{
