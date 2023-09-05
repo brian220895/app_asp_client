@@ -14,7 +14,7 @@ const cookies = new Cookies();
 // let axiosJWT=axios.create()
 // const URL='http://localhost:3001'
 
-const URL='https://brian-server.cyclic.app'
+const URL='http://localhost:3001'
 
 
 
@@ -63,9 +63,7 @@ export const registerUser=async(user,dispatch,navigate)=>{
     try {
 
         // console.log('registerUser',user)
-      const res= await axios.post(`${URL}/users`,user,{
-        withCredentials: true
-      })
+      const res= await axios.post(`${URL}/users`,user)
       // console.log('res',res.data.data)
       dispatch(registerUserSuccess(res.data.data))
       // navigate("/home")
@@ -85,9 +83,7 @@ export const registerUser=async(user,dispatch,navigate)=>{
     // const res= await axios.get(`${URL}/users`,{
     //   withCredentials: true
     // })
-    const res= await axios.get(`${URL}/users`,{headers:{token:`${accessToken}`}},{
-      withCredentials: true
-    })
+    const res= await axios.get(`${URL}/users`,{headers:{token:`${accessToken}`}})
    
     dispatch(getUsersSuccess(res.data.data))
   } catch (error) {
@@ -109,9 +105,7 @@ export const getDetailUser =async(dispatch,navigate)=>{
       const codedToken=jwt_decoded(accessToken)
       const userId=codedToken.id
   
-      const res = await axios.get(`${URL}/users/getdetail/${userId}`,{headers:{token:`${accessToken}`}},{
-        withCredentials: true
-      })
+      const res = await axios.get(`${URL}/users/getdetail/${userId}`,{headers:{token:`${accessToken}`}})
     //  console.log('asdasdasdasdasdddasdas',res.data)
      dispatch(getDetailUserSuccess(res.data))
     }
@@ -127,8 +121,8 @@ export const loginUser =async(user,dispatch,navigate)=>{
   try {
 
     const res= await axios.post(`${URL}/users/login`,user,{
-      withCredentials: true
-    })
+      withCredentials:true,
+  })
     // console.log('res',res.data.data)
     
     dispatch(loginUserSuccess(res.data))
@@ -168,9 +162,7 @@ export const logoutUser =async(dispatch,navigate)=>{
   dispatch(logoutUserStart())
   try {
 
-    await axios.post(`${URL}/users/logout`,{
-      withCredentials: true
-    })
+    await axios.post(`${URL}/users/logout`)
     // console.log('res',res.data.data)
     
     dispatch(logoutUserSuccess())

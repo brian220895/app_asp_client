@@ -97,7 +97,7 @@ function UserPage() {
       // await loginUsertest(dispatch,navigate)
 
       await loginUser(stateUserLogin,dispatch,navigate)
-        message.success('Login successfully', [4], hideModalLogin())
+        // message.success('Login successfully', [4], hideModalLogin())
   
 
     };

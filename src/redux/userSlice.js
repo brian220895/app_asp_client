@@ -58,9 +58,9 @@ loginUserSuccess:(state,action)=>{
   state.success=true
   // console.log('gggggg',action.payload.refreshToken)
  
-  cookies.set('token', action.payload.accessToken, {  
-      // httpOnly: true,
-       sameSite: 'strict'});
+  // cookies.set('token', action.payload.accessToken, {  
+  //     // httpOnly: true,
+  //      sameSite: 'strict'});
   
   // console.log('ggggggsdasd',action.payload.accessToken)
   // cookies.set('refreshToken', action.payload.refreshToken, {  
