@@ -83,7 +83,9 @@ export const registerUser=async(user,dispatch,navigate)=>{
     // const res= await axios.get(`${URL}/users`,{
     //   withCredentials: true
     // })
-    const res= await axios.get(`${URL}/users`,{headers:{token:`${accessToken}`}})
+    const res= await axios.get(`${URL}/users`,{headers:{token:`${accessToken}`}},{
+      withCredentials:true,
+  })
    
     dispatch(getUsersSuccess(res.data.data))
   } catch (error) {
