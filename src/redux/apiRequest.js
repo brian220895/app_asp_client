@@ -80,12 +80,14 @@ export const registerUser=async(user,dispatch,navigate)=>{
   dispatch(getUsersStart())
   try {
 
+    const config = {
+      withCredentials: true,
+      headers: {'Content-Type': 'application/json',}
+  };
     // const res= await axios.get(`${URL}/users`,{
     //   withCredentials: true
     // })
-    const res= await axios.get(`${URL}/users`,{headers:{token:`${accessToken}`}},{
-      withCredentials:true,
-  })
+    const res= await axios.get(`${URL}/users`,{headers:{token:`${accessToken}`}},config)
    
     dispatch(getUsersSuccess(res.data.data))
   } catch (error) {
@@ -100,7 +102,7 @@ export const getDetailUser =async(dispatch,navigate)=>{
  
   dispatch(getDetailUserStart())
   try {
-
+   
 
     if(cookies.get('token')){
       const accessToken = cookies.get('token')
