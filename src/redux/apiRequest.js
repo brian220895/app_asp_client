@@ -84,7 +84,7 @@ export const registerUser=async(user,dispatch,navigate)=>{
     //   withCredentials: true
     // })
     const res= await axios.get(`${URL}/users`,{headers:{token:`${accessToken}`}},{
-      withCredentials:true,
+      withCredentials:false,
   })
    
     dispatch(getUsersSuccess(res.data.data))
@@ -123,7 +123,7 @@ export const loginUser =async(user,dispatch,navigate)=>{
   try {
 
     const res= await axios.post(`${URL}/users/login`,user,{
-      withCredentials:true,
+      withCredentials:false,
   })
     // console.log('res',res.data.data)
     
