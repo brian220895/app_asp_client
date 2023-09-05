@@ -17,7 +17,7 @@ const cookies = new Cookies();
 const URL='https://gray-clever-wasp.cyclic.app'
 
 
-
+// const URL='http://localhost:3001'
 
 
 
@@ -121,11 +121,16 @@ export const getDetailUser =async(dispatch,navigate)=>{
 export const loginUser =async(user,dispatch,navigate)=>{
   dispatch(loginUserStart())
   try {
+    const config = {
+      withCredentials: true,
+      headers: {'Content-Type': 'application/json',}
+  };
+  // axios(config).then((res) => {
+  //   console.log('res',res)
 
-    const res= await axios.post(`${URL}/users/login`,user,{
-      withCredentials:true,
-  })
-    // console.log('res',res.data.data)
+  // });
+    const res= await axios.post(`${URL}/users/login`,user,config)
+    console.log('res',res.data)
     
     dispatch(loginUserSuccess(res.data))
     getUsers(dispatch,navigate)
