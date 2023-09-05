@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 import axios from "axios"
 
-const URL='http://localhost:3001'
+const URL='https://gray-clever-wasp.cyclic.app'
 // const URL='http://localhost:3000'
 export const createPost = createAsyncThunk(
     "createPost",
