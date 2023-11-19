@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-import Cookies from 'universal-cookie';
-const cookies = new Cookies();
+// import Cookies from 'universal-cookie';
+// const cookies = new Cookies();
 const userSlice = createSlice({
   name: 'userReducer',
   initialState:{
