@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 import axios from "axios"
 
-const URL='https://dulieu.thegioimauxanh.com'
+const URL='https://app-asp-server.onrender.com'
 
 
 
