@@ -14,7 +14,7 @@ const cookies = new Cookies();
 // let axiosJWT=axios.create()
 // const URL='http://localhost:3001'
 
-const URL='https://gray-clever-wasp.cyclic.app'
+const URL='https://dulieu.thegioimauxanh.com'
 
 
 // const URL='http://localhost:3001'
@@ -62,11 +62,11 @@ export const registerUser=async(user,dispatch,navigate)=>{
     dispatch(registerUserStart())
     try {
 
-        // console.log('registerUser',user)
+        console.log('registerUser222222',user)
       const res= await axios.post(`${URL}/users`,user)
-      // console.log('res',res.data.data)
+      console.log('res',res.data.data)
       dispatch(registerUserSuccess(res.data.data))
-      // navigate("/home")
+      navigate("/home")
     } catch (error) {
       dispatch(registerUserFailed())
     }
@@ -74,20 +74,22 @@ export const registerUser=async(user,dispatch,navigate)=>{
 
 
  export const getUsers =async(dispatch,navigate)=>{
-  const accessToken = cookies.get('token')
+  // const accessToken = cookies.get('token')
   
   // console.log('accessToken22',accessToken)
   dispatch(getUsersStart())
   try {
 
-    const config = {
-      withCredentials: true,
-      headers: {'Content-Type': 'application/json',}
-  };
+  //   const config = {
+  //     withCredentials: true,
+  //     headers: {'Content-Type': 'application/json',}
+  // };
     // const res= await axios.get(`${URL}/users`,{
     //   withCredentials: true
     // })
-    const res= await axios.get(`${URL}/users`,{headers:{token:`${accessToken}`}},config)
+    // const res= await axios.get(`${URL}/users`,{headers:{token:`${accessToken}`}},config)
+
+    const res= await axios.get(`${URL}/users`)
    
     dispatch(getUsersSuccess(res.data.data))
   } catch (error) {
@@ -124,21 +126,23 @@ export const loginUser =async(user,dispatch,navigate)=>{
   dispatch(loginUserStart())
   try {
     const config = {
-      withCredentials: true,
+     withCredentials: true,
       headers: {'Content-Type': 'application/json',}
   };
   // axios(config).then((res) => {
-  //   console.log('res',res)
-
-  // });
+    // console.log('user2',user)
+   
     const res= await axios.post(`${URL}/users/login`,user,config)
-    console.log('res',res.data)
+    // console.log('user2',user)
+  // });
+    // const res= await axios.post(`${URL}/users/login`,user,config)
+    // console.log('res',res.data)
     
     dispatch(loginUserSuccess(res.data))
-    getUsers(dispatch,navigate)
-    getDetailUser(dispatch,navigate)
+    // getUsers(dispatch,navigate)
+    // getDetailUser(dispatch,navigate)
     // navigate("/home")
-    console.log('login API1', res)
+    // console.log('login API1', res)
   } catch (error) {
     dispatch(loginUserFailed())
   }

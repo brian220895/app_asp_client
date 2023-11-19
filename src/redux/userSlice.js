@@ -22,7 +22,7 @@ const userSlice = createSlice({
   },
   registerUserSuccess:(state,action)=>{
       state.users.push(action.payload)
-      state.detailuser=action.payload
+      state.detailUser=action.payload
       state.isFetching=false
       state.success=true
       state.error=false
@@ -84,7 +84,7 @@ logoutUserSuccess:(state)=>{
   state.isFetching=false
   state.success=false
   state.error=false
-  cookies.remove('token');
+  // cookies.remove('token');
   // console.log(action)
 },
 logoutUserFailed:(state)=>{

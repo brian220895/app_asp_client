@@ -47,7 +47,7 @@ function UserPage() {
     };
 
     const onFinishRegister = async() => {
-        console.log('stateUser',stateUser);
+        console.log('stateUser11',stateUser);
 
         await registerUser(stateUser,dispatch,navigate)
           
@@ -92,12 +92,12 @@ function UserPage() {
 
 
   const onFinishLogin = async() => {
-      console.log('stateUserLogin',stateUserLogin);
+      // console.log('stateUserLogin',stateUserLogin);
 
       // await loginUsertest(dispatch,navigate)
 
       await loginUser(stateUserLogin,dispatch,navigate)
-        // message.success('Login successfully', [4], hideModalLogin())
+        message.success('Login successfully', [4], hideModalLogin())
   
 
     };
@@ -149,7 +149,7 @@ const handleLogout=()=>{
 const { users,detailUser} = useSelector((state) => state.listUser)    
 useEffect(() => {
   getUsers(dispatch,navigate)
-  getDetailUser(dispatch,navigate)
+  // getDetailUser(dispatch,navigate)
   
 }, [dispatch,navigate])
 
